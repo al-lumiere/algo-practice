@@ -32,8 +32,8 @@ Output:
 */
 
 function Test(str1, str2) {
-  let arr1 = str1.split(" ").map(Number);
-  let arr2 = str2.split(" ").map(Number);
+  let arr1 = str1.trim().split(/\s+/).map(Number);
+  let arr2 = str2.trim().split(/\s+/).map(Number);
   let n = 0;
 
   while (arr1.length !== 0 && arr2.length !== 0) {
@@ -41,25 +41,17 @@ function Test(str1, str2) {
       return "botva";
     }
 
-    let cur1 = arr1[0];
-    let cur2 = arr2[0];
+    let cur1 = arr1.shift();
+    let cur2 = arr2.shift();
 
     if (cur1 === 0 && cur2 === 9) {
       arr1.push(cur1, cur2);
-      arr1.shift();
-      arr2.shift();
     } else if (cur2 === 0 && cur1 === 9) {
       arr2.push(cur1, cur2);
-      arr1.shift();
-      arr2.shift();
     } else if (cur1 > cur2) {
       arr1.push(cur1, cur2);
-      arr1.shift();
-      arr2.shift();
     } else {
       arr2.push(cur1, cur2);
-      arr1.shift();
-      arr2.shift();
     }
 
     n++;
